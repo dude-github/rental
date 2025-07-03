@@ -9,7 +9,7 @@ export const expenseSchema = z.object({
 
   label: z.string(),
 
-  note: z.string(),
+  name: z.string(),
 
   category: z.string(),
 

@@ -42,12 +42,12 @@ export function exportTableToCSV<TData>(
     : table.getRowModel().rows;
 
   if (selectedRows.length === 0) {
-    console.error(
-      "No rows selected for export. Please select at least one row."
-    );
     toast({
       title: "No rows selected for export. Please select at least one row.",
     });
+    // console.error(
+    //   "No rows selected for export. Please select at least one row."
+    // );
     return; // Exit the function if no rows are selected
   }
 
@@ -56,12 +56,12 @@ export function exportTableToCSV<TData>(
     for (const header of headers) {
       const cellValue = row.getValue(header);
       if (cellValue === null || cellValue === undefined) {
-        console.error(
-          `Missing value in row ${row.id} for column "${header}". Export aborted.`
-        );
         toast({
           title: `Missing value in row ${row.id} for column "${header}". Export aborted.`,
         });
+        console.error(
+          `Missing value in row ${row.id} for column "${header}". Export aborted.`
+        );
         return; // Exit the function if any cell value is missing
       }
     }

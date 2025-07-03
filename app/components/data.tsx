@@ -1,4 +1,4 @@
-import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
+// import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
 
 export const categories = [
   {
@@ -68,7 +68,7 @@ export const incomeType = [
 
     value: "income",
 
-    icon: ArrowUpIcon,
+    // icon: ArrowUpIcon,
   },
 
   {
@@ -76,6 +76,6 @@ export const incomeType = [
 
     value: "expense",
 
-    icon: ArrowDownIcon,
+    // icon: ArrowDownIcon,
   },
 ];

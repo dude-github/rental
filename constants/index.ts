@@ -5,14 +5,14 @@ export const sidebarLinks = [
     imageUrl: "/icons/Home.svg",
   },
   {
-    label: "Lights",
-    route: "/lights",
-    imageUrl: "/icons/upcoming.svg",
-  },
-  {
     label: "Table",
     route: "/table",
     imageUrl: "/icons/previous.svg",
+  },
+  {
+    label: "Contact",
+    route: "/contact",
+    imageUrl: "/icons/upcoming.svg",
   },
   // {
   //   label: "Previous",

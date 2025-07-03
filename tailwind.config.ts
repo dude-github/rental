@@ -12,10 +12,10 @@ const config: Config = {
     extend: {
       colors: {
         dark: {
-          // 1: "#1C1F2E",
-          1: "black",
-          2: "black",
-          // 2: "#161925",
+          1: "#1C1F2E",
+          // 1: "black",
+          // 2: "black",
+          2: "#161925",
           3: "#252A41",
           4: "#1E2757",
         },

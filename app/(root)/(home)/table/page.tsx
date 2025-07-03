@@ -5,7 +5,7 @@ import { DataTable } from "@/app/components/data-table";
 import { columns } from "@/app/components/columns";
 
 export const metadata: Metadata = {
-  title: "Expenses",
+  title: "Equipments Table",
   description: "A Expense tracker build using Tanstack Table.",
 };
 
@@ -25,7 +25,7 @@ const Table = async () => {
       <div className="h-full flex-1 flex-col space-y-2 p-8 md:flex  ">
         <div className="flex items-center justify-between">
           <p className="text-muted-foreground">
-            Here&apos;s a list of your expenses for this month!
+            Here&apos;s a list of Equipments!
           </p>
         </div>
         <DataTable data={data} columns={columns} />

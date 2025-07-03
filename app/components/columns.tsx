@@ -6,16 +6,18 @@ import { Expense } from "./schema";
 
 import { DataTableColumnHeader } from "./data-table-column-header";
 
-import { DataTableRowActions } from "./data-table-row-actions";
+// import { DataTableRowActions } from "./data-table-row-actions";
 
 import { TrendingUp, TrendingDown } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import EditCell from "@/components/EditCell";
 // import EditableCell from "@/components/EditableCell";
 
 export const columns: ColumnDef<Expense>[] = [
+  // ! Select
   {
     id: "select",
 
@@ -45,6 +47,7 @@ export const columns: ColumnDef<Expense>[] = [
     enableHiding: false,
   },
 
+  // ! Label
   {
     accessorKey: "label",
 
@@ -61,24 +64,26 @@ export const columns: ColumnDef<Expense>[] = [
     enableHiding: false,
   },
 
+  // ! Name
   {
-    accessorKey: "note",
+    accessorKey: "name",
 
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Note" />
+      <DataTableColumnHeader column={column} title="Name" />
     ),
 
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium capitalize">
-            {row.getValue("note")}
+            {row.getValue("name")}
           </span>
         </div>
       );
     },
   },
 
+  // ! Category
   {
     accessorKey: "category",
 
@@ -99,6 +104,7 @@ export const columns: ColumnDef<Expense>[] = [
     },
   },
 
+  // !Type
   {
     accessorKey: "type",
 
@@ -112,9 +118,19 @@ export const columns: ColumnDef<Expense>[] = [
       return (
         <div className="flex w-[100px] items-center">
           {type === "income" ? (
-            <TrendingUp size={20} className="mr-2 text-green-500" />
+            <TrendingUp
+              // size={20}
+              className="mr-2 text-green-500"
+              height={1}
+              width={1}
+            />
           ) : (
-            <TrendingDown size={20} className="mr-2 text-red-500" />
+            <TrendingDown
+              // size={20}
+              className="mr-2 text-red-500"
+              height={1}
+              width={1}
+            />
           )}
 
           <span className="capitalize"> {row.getValue("type")}</span>
@@ -127,39 +143,42 @@ export const columns: ColumnDef<Expense>[] = [
     },
   },
 
-  // Amount
+  // ! Amount
   {
     accessorKey: "amount",
 
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Amount" />
+      <DataTableColumnHeader column={column} title="Quantity" />
     ),
 
-    cell: ({ row }) => {
-      const type = row.getValue("type");
+    cell: EditCell,
 
-      return (
-        <div className="flex w-[100px] items-center">
-          <span
-            className={cn(
-              "capitalize",
+    // ! Amount Old Code Fetching amount from static Data
+    // ({ row }) => {
+    //   const type = row.getValue("type");
 
-              type === "income" ? "text-green-500" : "text-red-500"
-            )}
-          >
-            {" "}
-            {row.getValue("amount")}
-          </span>
-        </div>
-      );
-    },
+    //   return (
+    //     <div className="flex w-[100px] items-center">
+    //       <span
+    //         className={cn(
+    //           "capitalize",
 
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    //           type === "income" ? "text-green-500" : "text-red-500"
+    //         )}
+    //       >
+    //         {" "}
+    //         {row.getValue("amount")}
+    //       </span>
+    //     </div>
+    //   );
+    // },
+    // ! Amount Filtering Function
+    // filterFn: (row, id, value) => {
+    //   return value.includes(row.getValue(id));
+    // },
   },
 
-  // Date Range Picker
+  // ! Date Range Picker
 
   // {
   //   accessorKey: "date",
@@ -195,44 +214,45 @@ export const columns: ColumnDef<Expense>[] = [
   //   },
   // },
 
-  // Date Picker
-  {
-    accessorKey: "date",
+  // ! Date Picker
+  // {
+  //   accessorKey: "date",
 
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Date" />
-    ),
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Date" />
+  //   ),
 
-    cell: ({ row }) => {
-      const date = new Date(row.getValue("date"));
+  //   cell: ({ row }) => {
+  //     const date = new Date(row.getValue("date"));
 
-      const formattedDate = date.toLocaleDateString("en-US", {
-        day: "2-digit",
+  //     const formattedDate = date.toLocaleDateString("en-US", {
+  //       day: "2-digit",
 
-        month: "short",
+  //       month: "short",
 
-        year: "numeric",
-      });
+  //       year: "numeric",
+  //     });
 
-      return (
-        <div className="flex w-[100px] items-center">
-          <span className="capitalize">{formattedDate}</span>
-        </div>
-      );
-    },
+  //     return (
+  //       <div className="flex w-[100px] items-center">
+  //         <span className="capitalize">{formattedDate}</span>
+  //       </div>
+  //     );
+  //   },
 
-    filterFn: (row, id, value) => {
-      const rowDate = new Date(row.getValue(id));
+  //   filterFn: (row, id, value) => {
+  //     const rowDate = new Date(row.getValue(id));
 
-      const [startDate, endDate] = value;
+  //     const [startDate, endDate] = value;
 
-      return rowDate >= startDate && rowDate <= endDate;
-    },
-  },
+  //     return rowDate >= startDate && rowDate <= endDate;
+  //   },
+  // },
 
-  {
-    id: "actions",
+  // ! Actions
+  // {
+  //   id: "actions",
 
-    cell: ({ row }) => <DataTableRowActions row={row} />,
-  },
+  //   cell: ({ row }) => <DataTableRowActions row={row} />,
+  // },
 ];

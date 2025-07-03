@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 
-interface EditableCellProps {
-  row: string;
-  column: string;
-  table: string;
-  getValue: () => string;
-}
-
-const EditableCell = ({ getValue, row, column, table }: EditableCellProps) => {
+const EditCell = ({ getValue, row, column, table }) => {
   const initialValue = getValue();
   const [value, setValue] = useState(initialValue);
 
-  // const onBlur = () => {
-  //   table.options.meta?.updateData(row.index, column.id, value);
-  // };
+  const onBlur = () => {
+    table.options.meta?.updateData(row.index, column.id, value);
+  };
 
   useEffect(() => {
     setValue(initialValue);
@@ -23,6 +16,7 @@ const EditableCell = ({ getValue, row, column, table }: EditableCellProps) => {
   return (
     <Input
       value={value}
+      onBlur={onBlur}
       onChange={(e) => setValue(e.target.value)}
       placeholder="0"
       className="w-50 cursor-pointer bg-transparent"
@@ -30,4 +24,4 @@ const EditableCell = ({ getValue, row, column, table }: EditableCellProps) => {
   );
 };
 
-export default EditableCell;
+export default EditCell;

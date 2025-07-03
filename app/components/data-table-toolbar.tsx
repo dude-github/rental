@@ -20,7 +20,7 @@ import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 
 import { DataTableViewOptions } from "./data-table-view-options";
 
-import { DownloadIcon, TrashIcon } from "lucide-react";
+import { DownloadIcon } from "lucide-react";
 import { exportTableToCSV } from "@/lib/export";
 
 interface DataTableToolbarProps<TData> {
@@ -52,11 +52,11 @@ export function DataTableToolbar<TData>({
       <div className="flex flex-1 flex-wrap items-center gap-2">
         <Input
           placeholder="Filter labels..."
-          value={(table.getColumn("note")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) => {
-            table.getColumn("note")?.setFilterValue(event.target.value);
+            table.getColumn("name")?.setFilterValue(event.target.value);
           }}
-          className="h-8 w-[150px] lg:w-[250px]"
+          className="h-8 w-[150px] lg:w-[250px] bg-transparent"
         />
 
         {table.getColumn("category") && (
@@ -94,9 +94,10 @@ export function DataTableToolbar<TData>({
           variant="outline"
         /> */}
 
-        <div className="px-4 text-muted-foreground">
+        <div className="px-4 ">
           <Button
             variant="outline"
+            className="bg-transparent "
             size="sm"
             onClick={() =>
               exportTableToCSV(table, {
@@ -112,12 +113,12 @@ export function DataTableToolbar<TData>({
       </div>
 
       <div className="flex items-center gap-2">
-        {table.getFilteredSelectedRowModel().rows.length > 0 ? (
-          <Button variant="outline" size="sm">
+        {/* {table.getFilteredSelectedRowModel().rows.length > 0 ? (
+          <Button variant="outline" size="sm" className="bg-transparent">
             <TrashIcon className="mr-2 size-4" aria-hidden="true" />
             Delete ({table.getFilteredSelectedRowModel().rows.length})
           </Button>
-        ) : null}
+        ) : null} */}
 
         <DataTableViewOptions table={table} />
       </div>
